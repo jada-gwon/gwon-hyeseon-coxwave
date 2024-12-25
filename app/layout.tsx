@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Noto_Sans } from 'next/font/google';
+
 import './globals.css';
+import { QueryClientProvider } from '@/app/libs';
 
 const notoSans = Noto_Sans({
   variable: '--font-noto-sans',
@@ -20,7 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${notoSans.variable} antialiased`}>
-        <div className="container mx-auto">{children}</div>
+        <QueryClientProvider>
+          <div className="container mx-auto">{children}</div>
+        </QueryClientProvider>
       </body>
     </html>
   );

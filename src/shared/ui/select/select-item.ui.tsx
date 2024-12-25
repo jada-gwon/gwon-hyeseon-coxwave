@@ -11,7 +11,7 @@ export const SelectItem: React.FC<SelectItemProps> = ({
     <div
       role="option"
       onClick={onSelect}
-      className="flex h-7 min-w-32 cursor-pointer items-center justify-between rounded-sm px-2 text-sm text-gray-700 hover:bg-zinc-100 "
+      className="flex h-7 min-w-32 cursor-pointer items-center justify-between gap-2 rounded-sm px-2 text-sm text-gray-700 hover:bg-zinc-100"
       aria-selected={selected}
       tabIndex={0}
     >
