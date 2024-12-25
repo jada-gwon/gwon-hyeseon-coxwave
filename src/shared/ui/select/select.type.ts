@@ -1,5 +1,5 @@
 export type SelectDropdownProps = {
-  open: boolean;
+  targetRef: React.RefObject<HTMLElement | null>;
   children: React.ReactNode;
 };
 

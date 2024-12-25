@@ -1,9 +1,11 @@
 'use client';
+import clsx from 'clsx';
 import { Children, cloneElement, useEffect, useRef, useState } from 'react';
 
 import SelectDropdown from './select-dropdown.ui';
 import { isSelectItemElement } from './select.lib';
 import { SelectRootProps } from './select.type';
+import { IconChevronDown } from '../icons';
 
 const SelectRoot: React.FC<SelectRootProps> = ({
   name,
@@ -33,23 +35,38 @@ const SelectRoot: React.FC<SelectRootProps> = ({
 
   return (
     <>
-      <button aria-label={name} onClick={toggleOpen} ref={buttonRef}>
-        {label ?? placeholder}
+      <button
+        aria-label={name}
+        onClick={toggleOpen}
+        ref={buttonRef}
+        className={clsx(
+          'h-8 rounded border border-zinc-300 px-2 text-sm font-semibold',
+          value ? 'text-gray-700' : 'text-gray-500',
+        )}
+      >
+        <div className="flex items-center justify-between gap-1">
+          <span>{label ?? placeholder}</span>
+          <span aria-hidden="true" className="text-gray-500">
+            <IconChevronDown />
+          </span>
+        </div>
       </button>
-      <SelectDropdown open={open}>
-        {Children.map(children, (child) => {
-          if (isSelectItemElement(child)) {
-            return cloneElement(child, {
-              selected: child.props.value === value,
-              onSelect: () => {
-                onChangeValue(child.props.value);
-                setOpen(false);
-              },
-            });
-          }
-          return child;
-        })}
-      </SelectDropdown>
+      {open && (
+        <SelectDropdown targetRef={buttonRef}>
+          {Children.map(children, (child) => {
+            if (isSelectItemElement(child)) {
+              return cloneElement(child, {
+                selected: child.props.value === value,
+                onSelect: () => {
+                  onChangeValue(child.props.value);
+                  setOpen(false);
+                },
+              });
+            }
+            return child;
+          })}
+        </SelectDropdown>
+      )}
     </>
   );
 };

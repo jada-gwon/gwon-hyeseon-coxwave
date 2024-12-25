@@ -11,18 +11,19 @@ const EventListPage: React.FC = () => {
 
   return (
     <>
-      <section aria-label="이벤트 필터링">
-        <ProjectSelect
-          selectedProject={selectedProject}
-          onChangeProject={(projectId) => {
-            console.log(projectId);
-            setSelectedProject(projectId);
-          }}
-        />
-        <PeriodFilter
-          selectedPeriod={selectedPeriod}
-          onChangePeriod={setSelectedPeriod}
-        />
+      <section aria-label="이벤트 필터링" className="flex justify-between py-6">
+        <div>
+          <ProjectSelect
+            selectedProject={selectedProject}
+            onChangeProject={setSelectedProject}
+          />
+        </div>
+        <div>
+          <PeriodFilter
+            selectedPeriod={selectedPeriod}
+            onChangePeriod={setSelectedPeriod}
+          />
+        </div>
       </section>
       <section aria-label="이벤트 목록"></section>
     </>

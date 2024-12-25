@@ -1,15 +1,17 @@
-import { useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
-import { isValidDate } from '@/shared/lib/dateUtil.lib';
+import {
+  formatDate,
+  isValidDate,
+  parseDateString,
+} from '@/shared/lib/dateUtil.lib';
 import { ToggleGroup } from '@/shared/ui/toggle-group';
+
+import DateInputDropdown from './date-input-dropdown';
 
 type PeriodFilterProps = {
   selectedPeriod: string | null;
-  // customDate?: string;
-  onChangePeriod: (
-    period: string | null,
-    // data?: { customDate: string },
-  ) => void;
+  onChangePeriod: (period: string | null) => void;
 };
 
 const periodFilterOptions = [
@@ -20,7 +22,7 @@ const periodFilterOptions = [
   { label: '3M' },
   { label: '6M' },
   { label: '12M' },
-  { label: 'Custom' },
+  // { label: 'Custom' },
 ];
 
 const PeriodFilter: React.FC<PeriodFilterProps> = ({
@@ -28,8 +30,27 @@ const PeriodFilter: React.FC<PeriodFilterProps> = ({
   onChangePeriod,
 }) => {
   const [showCustomDateInput, setShowCustomDateInput] = useState(false);
-  const isCustomPeriodSelected =
-    selectedPeriod != null && isValidDate(selectedPeriod);
+  const isCustomPeriodSelected = isValidDate(selectedPeriod ?? '');
+  const customButtonRef = useRef<HTMLButtonElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleWindowClick = (event: MouseEvent) => {
+      if (
+        dropdownRef.current?.contains(event.target as Node) ||
+        customButtonRef.current?.contains(event.target as Node)
+      ) {
+        return;
+      }
+      setShowCustomDateInput(false);
+    };
+
+    window.addEventListener('click', handleWindowClick);
+    return () => {
+      window.removeEventListener('click', handleWindowClick);
+    };
+  }, []);
+
   return (
     <>
       <ToggleGroup
@@ -55,18 +76,21 @@ const PeriodFilter: React.FC<PeriodFilterProps> = ({
             {option.label}
           </ToggleGroup.Item>
         ))}
+        <ToggleGroup.Item value="Custom" ref={customButtonRef}>
+          Custom
+        </ToggleGroup.Item>
       </ToggleGroup>
       {showCustomDateInput && (
-        <div>
-          <input
-            type="date"
-            value={isCustomPeriodSelected ? selectedPeriod : ''}
-            onChange={(event) => {
-              onChangePeriod(event.target.value || null);
-              setShowCustomDateInput(false);
-            }}
-          />
-        </div>
+        <DateInputDropdown
+          value={parseDateString(selectedPeriod ?? '')}
+          targetRef={customButtonRef}
+          ref={dropdownRef}
+          onChangeValue={(value) => {
+            console.log(value);
+            onChangePeriod(value ? formatDate(value) : null);
+            setShowCustomDateInput(false);
+          }}
+        />
       )}
     </>
   );

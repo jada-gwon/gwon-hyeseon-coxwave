@@ -22,5 +22,6 @@ export type ToggleButtonProps = {
   value?: string;
   pressed?: boolean;
   children?: React.ReactNode;
+  ref?: React.Ref<HTMLButtonElement>;
   onPressedChange?: (isPressed: boolean) => void;
 };
