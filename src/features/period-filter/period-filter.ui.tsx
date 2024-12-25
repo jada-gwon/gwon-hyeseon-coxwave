@@ -37,8 +37,13 @@ const PeriodFilter: React.FC<PeriodFilterProps> = ({
         type="single"
         pressed={isCustomPeriodSelected ? 'Custom' : selectedPeriod}
         onChangePressed={(pressed) => {
-          if (pressed === 'Custom') {
-            setShowCustomDateInput(true);
+          if (
+            // Custom 버튼을 누른경우 날짜 입력창 표시 토글
+            pressed === 'Custom' ||
+            // 현재 특정 날짜를 선택했는데, 다시 Custom 버튼을 누른 경우 날짜 입력창 표시 토글
+            (isCustomPeriodSelected && pressed == null)
+          ) {
+            setShowCustomDateInput((prev) => !prev);
           } else {
             setShowCustomDateInput(false);
             onChangePeriod(pressed);
