@@ -2,7 +2,7 @@
 import { Children, cloneElement, useEffect, useRef, useState } from 'react';
 
 import SelectDropdown from './select-dropdown.ui';
-import { isSelectItem } from './select.lib';
+import { isSelectItemElement } from './select.lib';
 import { SelectRootProps } from './select.type';
 
 const SelectRoot: React.FC<SelectRootProps> = ({
@@ -38,7 +38,7 @@ const SelectRoot: React.FC<SelectRootProps> = ({
       </button>
       <SelectDropdown open={open}>
         {Children.map(children, (child) => {
-          if (isSelectItem(child)) {
+          if (isSelectItemElement(child)) {
             return cloneElement(child, {
               selected: child.props.value === value,
               onSelect: () => {
@@ -62,9 +62,11 @@ const getLabel = (
     return null;
   }
   const selectedChild = Children.toArray(children).find(
-    (child) => isSelectItem(child) && child.props.value === value,
+    (child) => isSelectItemElement(child) && child.props.value === value,
   );
-  return isSelectItem(selectedChild) ? selectedChild.props.children : value;
+  return isSelectItemElement(selectedChild)
+    ? selectedChild.props.children
+    : value;
 };
 
 export default SelectRoot;
