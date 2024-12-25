@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GWON-HYESEON-COXWAVE
 
-## Getting Started
+Align AI Frontend Engineer 기술 과제 - 권혜선
 
-First, run the development server:
+## 실행 방법
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+_이 프로젝트는 NodeJS v22.11.0 그리고 yarn을 필요로 합니다._
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. 먼저 실팽에 필요한 의존성을 설치합니다.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+   ```bash
+   yarn
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. 아래와 같이 개발모드로 실행합니다.
 
-## Learn More
+   ```bash
+   yarn dev
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+## 프로젝트 구조
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+FSD를 사용하면서도 Next.js의 app route와 충돌을 피하기 위해서 Next.js 페이지 관련 코드들은 `app` 디렉토리에 FSD를 적용한 컴포넌트와 함수들은 `src` 디렉토리에 위치시켰습니다.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 사용한 라이브러리들과 사용 목적
 
-## Deploy on Vercel
+## 특별히 신경 쓴 부분
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 시간이 더 주어진다면 보완하고싶은 부분
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- 키보드를 사용하여 Select 컴포넌트를 조작할 수 있도록 지원
+  - 현재 Select 컴포넌트는 마우스를 이용해서만 값을 선택 할 수 있습니다. 더 나은 접근성을 위해 키보드의 화살표 키 등을 이용해 값을 선택 할 수 있도록 기능을 확장하고싶습니다.
