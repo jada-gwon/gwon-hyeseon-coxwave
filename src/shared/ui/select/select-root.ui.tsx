@@ -2,15 +2,8 @@
 import { Children, cloneElement, useEffect, useRef, useState } from 'react';
 
 import SelectDropdown from './select-dropdown.ui';
-import { isSelectItem } from './select-item.ui';
-
-type SelectRootProps = {
-  name: string;
-  placeholder: string;
-  value?: string | null | undefined;
-  children?: React.ReactNode;
-  onChangeValue: (value: string) => void;
-};
+import { isSelectItem } from './select.lib';
+import { SelectRootProps } from './select.type';
 
 const SelectRoot: React.FC<SelectRootProps> = ({
   name,

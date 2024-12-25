@@ -1,9 +1,6 @@
 import { createPortal } from 'react-dom';
 
-type SelectDropdownProps = {
-  open: boolean;
-  children: React.ReactNode;
-};
+import { SelectDropdownProps } from './select.type';
 
 const SelectDropdown: React.FC<SelectDropdownProps> = ({ open, children }) => {
   if (!open) {

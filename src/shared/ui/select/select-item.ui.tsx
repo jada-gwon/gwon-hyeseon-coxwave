@@ -1,11 +1,4 @@
-import { isValidElement } from 'react';
-
-export type SelectItemProps = {
-  value: string;
-  selected?: boolean;
-  children?: React.ReactNode;
-  onSelect?: () => void;
-};
+import { SelectItemProps } from './select.type';
 
 export const SelectItem: React.FC<SelectItemProps> = ({
   value,
@@ -19,12 +12,6 @@ export const SelectItem: React.FC<SelectItemProps> = ({
       {selected && <span aria-label="선택됨">✔</span>}
     </div>
   );
-};
-
-export const isSelectItem = (
-  element: React.ReactNode,
-): element is React.ReactElement<SelectItemProps> => {
-  return isValidElement(element) && element.type === SelectItem;
 };
 
 export default SelectItem;
