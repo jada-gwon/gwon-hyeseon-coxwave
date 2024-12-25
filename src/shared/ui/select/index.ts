@@ -5,6 +5,4 @@ const Select = Object.assign(SelectRoot, {
   Item: SelectItem,
 });
 
-Select.Item = SelectItem;
-
 export { Select };
