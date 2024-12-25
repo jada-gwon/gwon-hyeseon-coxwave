@@ -4,18 +4,18 @@ Align AI Frontend Engineer 기술 과제 - 권혜선
 
 ## 실행 방법
 
-_이 프로젝트는 NodeJS v22.11.0 그리고 yarn을 필요로 합니다._
+_이 프로젝트는 NodeJS v22.11.0 그리고 pnpm을 필요로 합니다._
 
 1. 먼저 실팽에 필요한 의존성을 설치합니다.
 
    ```bash
-   yarn
+   pnpm install --frozen-lockfile
    ```
 
 2. 아래와 같이 개발모드로 실행합니다.
 
    ```bash
-   yarn dev
+   pnpm dev
    ```
 
 ## 프로젝트 구조
