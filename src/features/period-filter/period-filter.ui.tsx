@@ -15,14 +15,13 @@ type PeriodFilterProps = {
 };
 
 const periodFilterOptions = [
-  { label: 'Today' },
-  { label: 'Yesterday' },
-  { label: '7D' },
-  { label: '30D' },
-  { label: '3M' },
-  { label: '6M' },
-  { label: '12M' },
-  // { label: 'Custom' },
+  'Today',
+  'Yesterday',
+  '7D',
+  '30D',
+  '3M',
+  '6M',
+  '12M',
 ];
 
 const PeriodFilter: React.FC<PeriodFilterProps> = ({
@@ -72,8 +71,8 @@ const PeriodFilter: React.FC<PeriodFilterProps> = ({
         }}
       >
         {periodFilterOptions.map((option) => (
-          <ToggleGroup.Item key={option.label} value={option.label}>
-            {option.label}
+          <ToggleGroup.Item key={option} value={option}>
+            {option}
           </ToggleGroup.Item>
         ))}
         <ToggleGroup.Item value="Custom" ref={customButtonRef}>
