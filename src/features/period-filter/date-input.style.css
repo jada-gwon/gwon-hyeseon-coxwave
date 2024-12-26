@@ -1,7 +1,6 @@
 .custom-date-input {
-  border: none;
-  display: block;
   @apply !text-gray-700 text-xs;
+  @apply mt-0.5 rounded border border-zinc-300 bg-white shadow-md;
 
   .react-datepicker__header {
     @apply bg-white;

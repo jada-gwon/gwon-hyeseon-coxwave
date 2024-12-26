@@ -2,9 +2,9 @@
 import clsx from 'clsx';
 import { Children, cloneElement, useEffect, useRef, useState } from 'react';
 
-import SelectDropdown from './select-dropdown.ui';
 import { isSelectItemElement } from './select.lib';
 import { SelectRootProps } from './select.type';
+import { Dropdown } from '../dropdown';
 import { IconChevronDown } from '../icons';
 
 const SelectRoot: React.FC<SelectRootProps> = ({
@@ -52,20 +52,22 @@ const SelectRoot: React.FC<SelectRootProps> = ({
         </div>
       </button>
       {open && (
-        <SelectDropdown targetRef={buttonRef}>
-          {Children.map(children, (child) => {
-            if (isSelectItemElement(child)) {
-              return cloneElement(child, {
-                selected: child.props.value === value,
-                onSelect: () => {
-                  onChangeValue(child.props.value);
-                  setOpen(false);
-                },
-              });
-            }
-            return child;
-          })}
-        </SelectDropdown>
+        <Dropdown targetRef={buttonRef}>
+          <div className="mt-0.5 rounded border border-zinc-300 bg-white px-2 py-1 shadow-md">
+            {Children.map(children, (child) => {
+              if (isSelectItemElement(child)) {
+                return cloneElement(child, {
+                  selected: child.props.value === value,
+                  onSelect: () => {
+                    onChangeValue(child.props.value);
+                    setOpen(false);
+                  },
+                });
+              }
+              return child;
+            })}
+          </div>
+        </Dropdown>
       )}
     </>
   );
