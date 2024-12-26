@@ -23,7 +23,6 @@ const DateInputDropdown: React.FC<DateInputDropdownProps> = ({
 }) => {
   return (
     <Dropdown targetRef={targetRef} ref={ref} position="bottomRight">
-      {/* <div className="mt-0.5 rounded border border-zinc-300 bg-white shadow-md"> */}
       <DatePicker
         inline
         selected={value}
@@ -37,7 +36,6 @@ const DateInputDropdown: React.FC<DateInputDropdownProps> = ({
         )}
         calendarClassName="custom-date-input"
       />
-      {/* </div> */}
     </Dropdown>
   );
 };
