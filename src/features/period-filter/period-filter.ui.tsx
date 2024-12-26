@@ -85,7 +85,6 @@ const PeriodFilter: React.FC<PeriodFilterProps> = ({
           targetRef={customButtonRef}
           ref={dropdownRef}
           onChangeValue={(value) => {
-            console.log(value);
             onChangePeriod(value ? formatDate(value) : null);
             setShowCustomDateInput(false);
           }}

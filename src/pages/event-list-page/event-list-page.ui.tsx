@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { EventTable } from '@/features/event-table';
+import { EventList } from '@/features/event-list';
 import { PeriodFilter } from '@/features/period-filter';
 import { ProjectSelect } from '@/features/project-select';
 
@@ -27,7 +27,7 @@ const EventListPage: React.FC = () => {
         </div>
       </section>
       <section aria-label="이벤트 목록">
-        <EventTable
+        <EventList
           selectedProjectId={selectedProject}
           // selectedPeriod={selectedPeriod}
         />
