@@ -3,8 +3,9 @@ import DatePicker from 'react-datepicker';
 import { createPortal } from 'react-dom';
 
 import 'react-datepicker/dist/react-datepicker.css';
+import DateInputHeader from './date-input-header.ui';
+
 import './date-input.style.css';
-import DateInputHeader from './date-input-header';
 
 type DateInputDropdownProps = {
   value: Date | null;

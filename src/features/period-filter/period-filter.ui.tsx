@@ -7,7 +7,7 @@ import {
 } from '@/shared/lib/dateUtil.lib';
 import { ToggleGroup } from '@/shared/ui/toggle-group';
 
-import DateInputDropdown from './date-input-dropdown';
+import DateInputDropdown from './date-input-dropdown.ui';
 
 type PeriodFilterProps = {
   selectedPeriod: string | null;
