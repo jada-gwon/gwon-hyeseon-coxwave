@@ -2,29 +2,16 @@ import clsx from 'clsx';
 import { useLayoutEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
-type DropdownBoxPosition = 'bottomLeft' | 'bottomRight';
+import { getBoxOffset, getClassName } from './dropdown.lib';
+import { DropdownProps, BoxOffset } from './dropdown.type';
 
-type DropdownTargetOffset = {
-  top?: number;
-  right?: number;
-  bottom?: number;
-  left?: number;
-};
-
-type DateInputDropdownProps = {
-  targetRef: React.RefObject<HTMLElement | null>;
-  position?: DropdownBoxPosition;
-  ref?: React.RefObject<HTMLDivElement | null>;
-  children?: React.ReactNode;
-};
-
-const Dropdown: React.FC<DateInputDropdownProps> = ({
+const Dropdown: React.FC<DropdownProps> = ({
   targetRef,
   position = 'bottomLeft',
   ref,
   children,
 }) => {
-  const [targetOffset, setTargetOffset] = useState<DropdownTargetOffset>({});
+  const [targetOffset, setTargetOffset] = useState<BoxOffset>({});
 
   useLayoutEffect(() => {
     if (targetRef?.current) {
@@ -36,36 +23,10 @@ const Dropdown: React.FC<DateInputDropdownProps> = ({
     }
   }, [targetRef]);
 
-  const getDropdownBoxPosition = () => {
-    switch (position) {
-      case 'bottomRight':
-        return {
-          top: targetOffset.bottom,
-          left: targetOffset.right,
-        };
-
-      case 'bottomLeft':
-      default:
-        return {
-          top: targetOffset.bottom,
-          left: targetOffset.left,
-        };
-    }
-  };
-
-  const getDropdownBoxClassName = () => {
-    switch (position) {
-      case 'bottomRight':
-        return '-translate-x-full';
-      case 'bottomLeft':
-        return '';
-    }
-  };
-
   return createPortal(
     <div
-      className={clsx('fixed', getDropdownBoxClassName())}
-      style={getDropdownBoxPosition()}
+      className={clsx('fixed', getClassName(position))}
+      style={getBoxOffset(position, targetOffset)}
       ref={ref}
     >
       {children}
