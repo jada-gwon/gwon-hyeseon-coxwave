@@ -1,3 +1,6 @@
+import { TZDate } from '@date-fns/tz';
+import { format } from 'date-fns';
+
 type Timestamp = {
   seconds: bigint;
   nanos?: number;
@@ -13,15 +16,7 @@ export function formatTimestamp(
   timeZone?: string,
 ): string {
   const date = timestampToDate(timestamp);
-  const formatter = new Intl.DateTimeFormat('en-US', {
-    year: 'numeric',
-    month: 'short', // 축약된 월 이름 (ex: Jul)
-    day: 'numeric',
-    hour: 'numeric',
-    minute: '2-digit',
-    hour12: true, // 12시간제
-    timeZone,
-  });
 
-  return formatter.format(date);
+  const zonedDate = new TZDate(date, timeZone);
+  return format(zonedDate, 'LLL d, yyyy, h:m aa');
 }
