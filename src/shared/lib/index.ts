@@ -1,2 +1,2 @@
-export * as dateUtils from './dateUtils.lib';
-export * as timestampUtils from './timestampUtils.lib';
+export * as dateUtils from './dateUtils';
+export * as timestampUtils from './timestampUtils';

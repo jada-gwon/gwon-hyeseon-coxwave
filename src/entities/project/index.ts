@@ -1,1 +1,1 @@
-export * as projectQueries from './project.query';
+export * as projectApis from './api';

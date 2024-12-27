@@ -1,4 +1,4 @@
-import { EventListPage } from '@/pages/event-list-page';
+import { EventListPage } from '@/pages/EventListPage';
 
 export default function Home() {
   return (

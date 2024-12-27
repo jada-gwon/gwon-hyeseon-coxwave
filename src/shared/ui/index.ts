@@ -1,5 +1,5 @@
-export * from './dropdown';
-export * from './select';
-export * from './toggle-group';
+export * from './Dropdown';
+export * from './Select';
+export * from './ToggleGroup';
 
 export * from './icons';

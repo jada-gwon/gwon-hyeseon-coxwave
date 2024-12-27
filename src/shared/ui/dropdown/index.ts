@@ -1,1 +1,1 @@
-export { default as Dropdown } from './dropdown.ui';
+export { default as Dropdown } from './ui/Dropdown';

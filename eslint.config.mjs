@@ -28,7 +28,8 @@ const eslintConfig = [
           groups: [
             ['builtin', 'external'],
             'internal',
-            ['parent', 'sibling', 'index'],
+            'parent',
+            ['sibling', 'index'],
             'unknown',
           ],
           pathGroups: [
