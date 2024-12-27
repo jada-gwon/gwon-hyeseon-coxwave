@@ -10,9 +10,11 @@ const EventList: React.FC = () => {
   const { data: timezone } = useTimezone();
   const projectId = useProjectId();
   const filterString = useFilterString();
+
   if (projectId == null) {
     return <ProjectNotSelected />;
   }
+
   return (
     <EventTable
       projectId={projectId}
