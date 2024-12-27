@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { eventQueries } from '@/entities/event';
 import { projectQueries } from '@/entities/project';
@@ -26,6 +26,10 @@ export function useEventListViewModel(projectId: string) {
     }
     setCurrentPage(page);
   };
+
+  useEffect(() => {
+    setCurrentPage(0);
+  }, [projectId]);
 
   return {
     events,
