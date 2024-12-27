@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import { Noto_Sans } from 'next/font/google';
 
+import { QueryClientProvider } from '@/app/ui';
+
 import './globals.css';
-import { QueryClientProvider } from '@/app/libs';
 
 const notoSans = Noto_Sans({
   variable: '--font-noto-sans',

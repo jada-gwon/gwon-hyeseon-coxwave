@@ -1,3 +1,5 @@
+'use client';
+
 import { useQuery } from '@connectrpc/connect-query';
 
 import { projectApis } from '@/entities/project';
