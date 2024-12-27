@@ -1,4 +1,4 @@
-import { dateUtils } from '@/shared/lib';
+import { timestampUtils } from '@/shared/lib';
 import { SimplePaginator } from '@/shared/ui/simple-paginator';
 
 import useEventListViewModel from './event-list.model';
@@ -30,11 +30,8 @@ const EventTable: React.FC<EventTableRowsProps> = ({ projectId }) => {
                 <td className="px-4 py-2 text-center">{event.type}</td>
                 <td className="px-4 py-2 text-center">
                   {event.createTime != null
-                    ? dateUtils.formatTimestamp(
-                        Number(event.createTime.seconds) * 1000,
-                        timezone,
-                      )
-                    : ''}
+                    ? timestampUtils.formatTimestamp(event.createTime, timezone)
+                    : '-'}
                 </td>
               </tr>
             ))}
