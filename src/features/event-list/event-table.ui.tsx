@@ -1,3 +1,4 @@
+import { dateUtils } from '@/shared/lib';
 import { SimplePaginator } from '@/shared/ui/simple-paginator';
 
 import useEventListViewModel from './event-list.model';
@@ -7,7 +8,7 @@ type EventTableRowsProps = {
 };
 
 const EventTable: React.FC<EventTableRowsProps> = ({ projectId }) => {
-  const { events, totalSize, isFetching, currentPage, onChangePage } =
+  const { events, totalSize, isFetching, currentPage, timezone, onChangePage } =
     useEventListViewModel(projectId);
 
   return (
@@ -19,7 +20,7 @@ const EventTable: React.FC<EventTableRowsProps> = ({ projectId }) => {
             <tr className="border-b border-zinc-300 bg-zinc-100 font-semibold">
               <th className="w-48 px-4 py-2 text-center">ID</th>
               <th className="px-4 py-2 text-center">Type</th>
-              <th className="w-40 px-4 py-2 text-center">CreateTime</th>
+              <th className="w-56 px-4 py-2 text-center">CreateTime</th>
             </tr>
           </thead>
           <tbody>
@@ -28,7 +29,12 @@ const EventTable: React.FC<EventTableRowsProps> = ({ projectId }) => {
                 <td className="px-4 py-2 text-center">{event.id}</td>
                 <td className="px-4 py-2 text-center">{event.type}</td>
                 <td className="px-4 py-2 text-center">
-                  {event.createTime?.seconds}
+                  {event.createTime != null
+                    ? dateUtils.formatTimestamp(
+                        event.createTime.seconds,
+                        timezone,
+                      )
+                    : ''}
                 </td>
               </tr>
             ))}
