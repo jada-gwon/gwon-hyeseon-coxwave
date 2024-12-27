@@ -2,15 +2,17 @@ import { useEffect, useState } from 'react';
 
 import { useInfiniteEventList } from '../api/useInfiniteEventList';
 
-const PageSize = 15;
-
-function useEventTableViewModel(projectId: string, filter: string) {
+function useEventTableViewModel(
+  projectId: string,
+  filter: string,
+  pageSize: number,
+) {
   const {
     data: eventData,
     hasNextPage,
     isFetching,
     fetchNextPage,
-  } = useInfiniteEventList(projectId, filter, PageSize);
+  } = useInfiniteEventList(projectId, filter, pageSize);
   const [currentPage, setCurrentPage] = useState(0);
 
   const { events, totalSize } = eventData?.pages[currentPage] ?? {

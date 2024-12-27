@@ -7,15 +7,17 @@ type EventTableProps = {
   projectId: string;
   filter: string;
   timezone: string | undefined;
+  pageSize?: number;
 };
 
 const EventTable: React.FC<EventTableProps> = ({
   projectId,
   filter,
   timezone,
+  pageSize = 15,
 }) => {
   const { events, totalSize, isFetching, currentPage, onChangePage } =
-    useEventTableViewModel(projectId, filter);
+    useEventTableViewModel(projectId, filter, pageSize);
 
   return (
     <>
@@ -48,7 +50,7 @@ const EventTable: React.FC<EventTableProps> = ({
         <SimplePaginator
           currentPage={currentPage}
           totalSize={totalSize}
-          pageSize={15}
+          pageSize={pageSize}
           isFetching={isFetching}
           onChangePage={onChangePage}
         />
