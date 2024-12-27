@@ -1,11 +1,11 @@
 // import { useLayoutEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 
-import 'react-datepicker/dist/react-datepicker.css';
-import { Dropdown } from '@/shared/ui/dropdown';
+import { Dropdown } from '@/shared/ui';
 
 import DateInputHeader from './date-input-header.ui';
 
+import 'react-datepicker/dist/react-datepicker.css';
 import './date-input.style.css';
 
 type DateInputDropdownProps = {

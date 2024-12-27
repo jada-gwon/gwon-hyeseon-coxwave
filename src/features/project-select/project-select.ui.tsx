@@ -1,5 +1,5 @@
 import { projectQueries } from '@/entities/project';
-import { Select } from '@/shared/ui/select';
+import { Select } from '@/shared/ui';
 
 type ProjectSelectProps = {
   selectedProject: string | null;

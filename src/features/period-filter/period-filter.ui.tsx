@@ -1,11 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 
-import {
-  formatDate,
-  isValidDate,
-  parseDateString,
-} from '@/shared/lib/dateUtil.lib';
-import { ToggleGroup } from '@/shared/ui/toggle-group';
+import { dateUtils } from '@/shared/lib';
+import { ToggleGroup } from '@/shared/ui';
 
 import DateInputDropdown from './date-input-dropdown.ui';
 
@@ -29,7 +25,7 @@ const PeriodFilter: React.FC<PeriodFilterProps> = ({
   onChangePeriod,
 }) => {
   const [showCustomDateInput, setShowCustomDateInput] = useState(false);
-  const isCustomPeriodSelected = isValidDate(selectedPeriod ?? '');
+  const isCustomPeriodSelected = dateUtils.isValidDate(selectedPeriod ?? '');
   const customButtonRef = useRef<HTMLButtonElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -81,11 +77,11 @@ const PeriodFilter: React.FC<PeriodFilterProps> = ({
       </ToggleGroup>
       {showCustomDateInput && (
         <DateInputDropdown
-          value={parseDateString(selectedPeriod ?? '')}
+          value={dateUtils.parseDateString(selectedPeriod ?? '')}
           targetRef={customButtonRef}
           ref={dropdownRef}
           onChangeValue={(value) => {
-            onChangePeriod(value ? formatDate(value) : null);
+            onChangePeriod(value ? dateUtils.formatDate(value) : null);
             setShowCustomDateInput(false);
           }}
         />

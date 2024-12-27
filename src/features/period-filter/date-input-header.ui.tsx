@@ -1,6 +1,6 @@
 import { ReactDatePickerCustomHeaderProps } from 'react-datepicker';
 
-import { IconChevronLeft, IconChevronRight } from '@/shared/ui/icons';
+import { IconChevronLeft, IconChevronRight } from '@/shared/ui';
 
 type DateInputHeaderProps = ReactDatePickerCustomHeaderProps & {
   hasValue: boolean;

@@ -1,4 +1,4 @@
-import { IconChevronLeft, IconChevronRight } from '@/shared/ui/icons';
+import { IconChevronLeft, IconChevronRight } from '@/shared/ui';
 
 import { getPageLabel } from './event-list.lib';
 import useEventListViewModel from './event-list.model';
