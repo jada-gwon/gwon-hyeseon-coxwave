@@ -3,43 +3,37 @@ import { useState } from 'react';
 import { eventQueries } from '@/entities/event';
 import { projectQueries } from '@/entities/project';
 
-import { PageSize } from './event-list.lib';
+const PageSize = 15;
 
-function useEventListViewModel(projectId: string) {
-  const [page, setPage] = useState(0);
-
+export function useEventListViewModel(projectId: string) {
   const {
     data: eventData,
     hasNextPage,
     isFetching,
     fetchNextPage,
   } = eventQueries.useInfiniteEventList(projectId, PageSize);
-
   const { data: projectData } = projectQueries.useProject(projectId);
+  const [currentPage, setCurrentPage] = useState(0);
 
-  const next = async () => {
-    if (isFetching || !hasNextPage) {
-      return;
-    }
-    await fetchNextPage();
-    setPage((prev) => prev + 1);
+  const { events, totalSize } = eventData?.pages[currentPage] ?? {
+    events: [],
+    totalSize: 0,
   };
 
-  const prev = () => {
-    if (isFetching || page <= 0) {
-      return;
+  const onChangePage = async (page: number) => {
+    if (eventData?.pages[page] == null && hasNextPage) {
+      await fetchNextPage();
     }
-    setPage((prev) => prev - 1);
+    setCurrentPage(page);
   };
 
   return {
-    events: eventData?.pages[page],
+    events,
+    totalSize,
     timezone: projectData?.project?.timeZone?.id,
-    currentPage: page,
-    hasPrevPage: page > 0,
-    hasNextPage,
-    next,
-    prev,
+    isFetching,
+    currentPage,
+    onChangePage,
   };
 }
 

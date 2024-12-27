@@ -14,7 +14,6 @@ export function useInfiniteEventList(projectId: string, pageSize: number) {
       pageParamKey: 'pageToken',
       getNextPageParam: (lastPage, totalPage) => {
         if (totalPage.length * pageSize >= lastPage.totalSize) {
-          console.log('totalPage', totalPage.length, lastPage.totalSize);
           return null;
         }
         return lastPage.nextPageToken;

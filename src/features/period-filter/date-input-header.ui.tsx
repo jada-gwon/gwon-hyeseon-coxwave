@@ -42,19 +42,19 @@ const DateInputHeader: React.FC<DateInputHeaderProps> = ({
         <div className="flex gap-1">
           <button
             onClick={decreaseMonth}
-            className="hover:bg-zinc-100"
+            className="rounded-sm text-gray-700 hover:bg-zinc-100"
             aria-label="이전 달"
           >
-            <span aria-hidden="true" className="size-5 rounded-sm *:size-full">
+            <span aria-hidden="true">
               <IconChevronLeft />
             </span>
           </button>
           <button
             onClick={increaseMonth}
-            className="hover:bg-zinc-100"
+            className="rounded-sm text-gray-700 hover:bg-zinc-100"
             aria-label="다음 달"
           >
-            <span aria-hidden="true" className="size-5 rounded-sm *:size-full">
+            <span aria-hidden="true">
               <IconChevronRight />
             </span>
           </button>
