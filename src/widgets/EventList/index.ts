@@ -1,2 +1,2 @@
 export { default as EventList } from './ui/EventList';
-export * from './model/filterStore';
+export * from './model/useEventListFilter';

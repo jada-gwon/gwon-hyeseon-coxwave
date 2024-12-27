@@ -2,11 +2,9 @@ import { useInfiniteQuery } from '@connectrpc/connect-query';
 
 import { eventApis } from '@/entities/event';
 
-import formatPeriodFilter from '../lib/formatPeriodFilter';
-
 export function useInfiniteEventList(
   projectId: string,
-  period: [Date | null, Date | null],
+  filter: string,
   pageSize: number,
 ) {
   return useInfiniteQuery(
@@ -15,7 +13,7 @@ export function useInfiniteEventList(
       projectId,
       pageToken: '',
       pageSize,
-      filter: formatPeriodFilter(period),
+      filter,
     },
     {
       pageParamKey: 'pageToken',

@@ -1,16 +1,21 @@
 import { timestampUtils } from '@/shared/lib';
 import { SimplePaginator } from '@/shared/ui/SimplePaginator';
 
-import useEventListViewModel from '../model/useEventListViewModel';
+import useEventTableViewModel from '../model/useEventTableViewModel';
 
 type EventTableProps = {
   projectId: string;
+  filter: string;
   timezone: string | undefined;
 };
 
-const EventTable: React.FC<EventTableProps> = ({ projectId, timezone }) => {
+const EventTable: React.FC<EventTableProps> = ({
+  projectId,
+  filter,
+  timezone,
+}) => {
   const { events, totalSize, isFetching, currentPage, onChangePage } =
-    useEventListViewModel(projectId);
+    useEventTableViewModel(projectId, filter);
 
   return (
     <>
