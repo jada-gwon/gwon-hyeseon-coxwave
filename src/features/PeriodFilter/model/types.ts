@@ -6,8 +6,8 @@ export type PeriodFilterOption = (typeof periodFilterOptions)[number];
 export type Period = [string | null, string | null];
 
 export type PeriodFilterProps = {
-  selectedPeriod: string | null;
-  onChangePeriod: (period: string | null) => void;
+  defaultSelected?: string;
+  onChangePeriod: (period: Period) => void;
 };
 
 export type DateInputDropdownProps = {

@@ -3,7 +3,6 @@ import ProjectNotSelected from './ProjectNotSelected';
 
 type EventTableProps = {
   projectId: string | null | undefined;
-  // period: [string | null, string | null];
 };
 
 const EventList: React.FC<EventTableProps> = ({

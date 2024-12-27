@@ -8,29 +8,26 @@ import { ProjectSelect } from '@/features/ProjectSelect';
 
 const EventListPage: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<string | null>(null);
-  const [selectedPeriod, setSelectedPeriod] = useState<string | null>(null);
 
   return (
     <>
-      <section aria-label="이벤트 필터링" className="flex justify-between py-6">
+      <section aria-label="이벤트 필터링" className="flex py-6">
         <div>
           <ProjectSelect
             selectedProject={selectedProject}
             onChangeProject={setSelectedProject}
           />
         </div>
-        <div>
+        <div className="ml-4">
           <PeriodFilter
-            selectedPeriod={selectedPeriod}
-            onChangePeriod={setSelectedPeriod}
+            onChangePeriod={(period) => {
+              console.log(period);
+            }}
           />
         </div>
       </section>
       <section aria-label="이벤트 목록">
-        <EventList
-          projectId={selectedProject}
-          // period={getPeriod(selectedPeriod)}
-        />
+        <EventList projectId={selectedProject} />
       </section>
     </>
   );
