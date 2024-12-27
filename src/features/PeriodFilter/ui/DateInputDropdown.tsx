@@ -7,7 +7,7 @@ import { DateInputDropdownProps } from '../model/types';
 import DateInputHeader from './DateInputHeader';
 
 import 'react-datepicker/dist/react-datepicker.css';
-import './date-input.style.css';
+import './style.css';
 
 const DateInputDropdown: React.FC<DateInputDropdownProps> = ({
   value,
