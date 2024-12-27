@@ -14,8 +14,8 @@ export function formatDate(date: Date): string {
   return `${yyyy}-${mm}-${dd}`;
 }
 
-export function formatTimestamp(timestamp: bigint, timeZone?: string): string {
-  const date = new Date(Number(timestamp));
+export function formatTimestamp(timestamp: number, timeZone?: string): string {
+  const date = new Date(timestamp);
   const formatter = new Intl.DateTimeFormat('en-US', {
     year: 'numeric',
     month: 'short', // 축약된 월 이름 (ex: Jul)

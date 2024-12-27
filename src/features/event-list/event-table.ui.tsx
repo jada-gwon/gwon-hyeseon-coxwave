@@ -31,7 +31,7 @@ const EventTable: React.FC<EventTableRowsProps> = ({ projectId }) => {
                 <td className="px-4 py-2 text-center">
                   {event.createTime != null
                     ? dateUtils.formatTimestamp(
-                        event.createTime.seconds,
+                        Number(event.createTime.seconds) * 1000,
                         timezone,
                       )
                     : ''}
