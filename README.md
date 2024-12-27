@@ -6,7 +6,7 @@ Align AI Frontend Engineer 기술 과제 - 권혜선
 
 _이 프로젝트는 NodeJS v22.11.0 그리고 pnpm을 필요로 합니다._
 
-1. 먼저 실팽에 필요한 의존성을 설치합니다.
+1. 먼저 실행에 필요한 의존성을 설치합니다.
 
    ```bash
    pnpm config set @buf:registry https://buf.build/gen/npm/v1/
