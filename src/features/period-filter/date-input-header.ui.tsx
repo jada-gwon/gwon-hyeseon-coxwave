@@ -1,11 +1,6 @@
-import { ReactDatePickerCustomHeaderProps } from 'react-datepicker';
-
 import { IconChevronLeft, IconChevronRight } from '@/shared/ui';
 
-type DateInputHeaderProps = ReactDatePickerCustomHeaderProps & {
-  hasValue: boolean;
-  clearDate: () => void;
-};
+import { DateInputHeaderProps } from './period-filter.type';
 
 const DateInputHeader: React.FC<DateInputHeaderProps> = ({
   date,

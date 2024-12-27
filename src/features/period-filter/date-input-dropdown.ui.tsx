@@ -1,19 +1,12 @@
-// import { useLayoutEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 
 import { Dropdown } from '@/shared/ui';
 
 import DateInputHeader from './date-input-header.ui';
+import { DateInputDropdownProps } from './period-filter.type';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import './date-input.style.css';
-
-type DateInputDropdownProps = {
-  value: Date | null;
-  targetRef: React.RefObject<HTMLElement | null>;
-  ref?: React.RefObject<HTMLDivElement | null>;
-  onChangeValue: (value: Date | null) => void;
-};
 
 const DateInputDropdown: React.FC<DateInputDropdownProps> = ({
   value,

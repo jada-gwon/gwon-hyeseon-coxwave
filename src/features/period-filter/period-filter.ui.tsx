@@ -4,21 +4,8 @@ import { dateUtils } from '@/shared/lib';
 import { ToggleGroup } from '@/shared/ui';
 
 import DateInputDropdown from './date-input-dropdown.ui';
-
-type PeriodFilterProps = {
-  selectedPeriod: string | null;
-  onChangePeriod: (period: string | null) => void;
-};
-
-const periodFilterOptions = [
-  'Today',
-  'Yesterday',
-  '7D',
-  '30D',
-  '3M',
-  '6M',
-  '12M',
-];
+import { periodFilterOptions } from './period-filter.config';
+import { PeriodFilterProps } from './period-filter.type';
 
 const PeriodFilter: React.FC<PeriodFilterProps> = ({
   selectedPeriod,

@@ -27,7 +27,10 @@ const EventListPage: React.FC = () => {
         </div>
       </section>
       <section aria-label="이벤트 목록">
-        <EventList projectId={selectedProject} period={selectedPeriod} />
+        <EventList
+          projectId={selectedProject}
+          // period={getPeriod(selectedPeriod)}
+        />
       </section>
     </>
   );

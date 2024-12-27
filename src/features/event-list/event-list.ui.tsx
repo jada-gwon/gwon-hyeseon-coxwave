@@ -2,8 +2,8 @@ import EventTable from './event-table.ui';
 import ProjectNotSelected from './project-not-selected.ui';
 
 type EventTableProps = {
-  projectId?: string | null | undefined;
-  period?: string | null | undefined;
+  projectId: string | null | undefined;
+  // period: [string | null, string | null];
 };
 
 const EventList: React.FC<EventTableProps> = ({
