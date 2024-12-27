@@ -5,10 +5,11 @@ import useEventListViewModel from '../model/useEventListViewModel';
 
 type EventTableProps = {
   projectId: string;
+  timezone: string | undefined;
 };
 
-const EventTable: React.FC<EventTableProps> = ({ projectId }) => {
-  const { events, totalSize, isFetching, currentPage, timezone, onChangePage } =
+const EventTable: React.FC<EventTableProps> = ({ projectId, timezone }) => {
+  const { events, totalSize, isFetching, currentPage, onChangePage } =
     useEventListViewModel(projectId);
 
   return (
@@ -29,7 +30,7 @@ const EventTable: React.FC<EventTableProps> = ({ projectId }) => {
                 <td className="px-4 py-2 text-center">{event.id}</td>
                 <td className="px-4 py-2 text-center">{event.type}</td>
                 <td className="px-4 py-2 text-center">
-                  {event.createTime != null
+                  {!!event.createTime && !!timezone
                     ? timestampUtils.formatTimestamp(event.createTime, timezone)
                     : '-'}
                 </td>

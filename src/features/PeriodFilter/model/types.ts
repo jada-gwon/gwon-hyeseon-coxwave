@@ -3,11 +3,10 @@ import { ReactDatePickerCustomHeaderProps } from 'react-datepicker';
 import { periodFilterOptions } from '../config';
 
 export type PeriodFilterOption = (typeof periodFilterOptions)[number];
-export type Period = [string | null, string | null];
 
 export type PeriodFilterProps = {
-  defaultSelected?: string;
-  onChangePeriod: (period: Period) => void;
+  selectedOption: string | null;
+  onChangeOption: (period: string | null) => void;
 };
 
 export type DateInputDropdownProps = {

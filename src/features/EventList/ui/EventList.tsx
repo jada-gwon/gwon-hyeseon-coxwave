@@ -2,16 +2,15 @@ import EventTable from './EventTable';
 import ProjectNotSelected from './ProjectNotSelected';
 
 type EventTableProps = {
-  projectId: string | null | undefined;
+  projectId: string | null;
+  timezone: string | undefined;
 };
 
-const EventList: React.FC<EventTableProps> = ({
-  projectId: selectedProjectId,
-}) => {
-  if (selectedProjectId == null) {
+const EventList: React.FC<EventTableProps> = ({ projectId, timezone }) => {
+  if (projectId == null) {
     return <ProjectNotSelected />;
   }
-  return <EventTable projectId={selectedProjectId} />;
+  return <EventTable projectId={projectId} timezone={timezone} />;
 };
 
 export default EventList;

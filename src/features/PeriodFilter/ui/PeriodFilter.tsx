@@ -9,12 +9,11 @@ import { PeriodFilterProps } from '../model/types';
 import DateInputDropdown from './DateInputDropdown';
 
 const PeriodFilter: React.FC<PeriodFilterProps> = ({
-  defaultSelected = null,
-  // onChangePeriod,
+  selectedOption,
+  onChangeOption,
 }) => {
-  const [selectedPeriod, setSelectedPeriod] = useState(defaultSelected);
   const [showCustomDateInput, setShowCustomDateInput] = useState(false);
-  const isCustomPeriodSelected = dateUtils.isValidDate(selectedPeriod ?? '');
+  const isCustomPeriodSelected = dateUtils.isValidDate(selectedOption ?? '');
   const customButtonRef = useRef<HTMLButtonElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -28,13 +27,15 @@ const PeriodFilter: React.FC<PeriodFilterProps> = ({
       setShowCustomDateInput((prev) => !prev);
     } else {
       setShowCustomDateInput(false);
-      setSelectedPeriod(value);
+      // setSelectedPeriod(value);
+      onChangeOption(value);
     }
   };
 
   const onChangeCustomDate = (value: Date | null) => {
-    setSelectedPeriod(value ? dateUtils.formatDate(value) : null);
+    const selectedValue = value && dateUtils.formatDate(value);
     setShowCustomDateInput(false);
+    onChangeOption(selectedValue);
   };
 
   useEffect(() => {
@@ -59,7 +60,7 @@ const PeriodFilter: React.FC<PeriodFilterProps> = ({
       <ToggleGroup
         name="조회 기간"
         type="single"
-        pressed={isCustomPeriodSelected ? 'Custom' : selectedPeriod}
+        pressed={isCustomPeriodSelected ? 'Custom' : selectedOption}
         onChangePressed={onChangeSelected}
       >
         {periodFilterOptions.map((option) => (
@@ -73,7 +74,7 @@ const PeriodFilter: React.FC<PeriodFilterProps> = ({
       </ToggleGroup>
       {showCustomDateInput && (
         <DateInputDropdown
-          value={dateUtils.parseDateString(selectedPeriod ?? '')}
+          value={dateUtils.parseDateString(selectedOption ?? '')}
           targetRef={customButtonRef}
           ref={dropdownRef}
           onChangeValue={onChangeCustomDate}

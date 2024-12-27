@@ -13,3 +13,6 @@ export function formatDate(date: Date): string {
   const dd = String(date.getDate()).padStart(2, '0');
   return `${yyyy}-${mm}-${dd}`;
 }
+export function getCurrentTimezone() {
+  return Intl.DateTimeFormat().resolvedOptions().timeZone;
+}

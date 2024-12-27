@@ -2,12 +2,22 @@
 
 import { useState } from 'react';
 
-import { EventList } from '@/features/EventList';
-import { PeriodFilter } from '@/features/PeriodFilter';
+import { EventList, useEventListFilter } from '@/features/EventList';
+import { getFilterValue, PeriodFilter } from '@/features/PeriodFilter';
 import { ProjectSelect } from '@/features/ProjectSelect';
+import useTimezone from '@/pages/api/useTimezone';
 
 const EventListPage: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<string | null>(null);
+  const [selectedPeriodOption, setSelectedPeriodOption] = useState<
+    string | null
+  >(null);
+  const { data: timezone } = useTimezone(selectedProject);
+  const eventListFilter = useEventListFilter();
+  const onChangePeriod = (option: string | null) => {
+    setSelectedPeriodOption(option);
+    eventListFilter.setPeriod(getFilterValue(option, timezone));
+  };
 
   return (
     <>
@@ -20,14 +30,13 @@ const EventListPage: React.FC = () => {
         </div>
         <div className="ml-4">
           <PeriodFilter
-            onChangePeriod={(period) => {
-              console.log(period);
-            }}
+            selectedOption={selectedPeriodOption}
+            onChangeOption={onChangePeriod}
           />
         </div>
       </section>
       <section aria-label="이벤트 목록">
-        <EventList projectId={selectedProject} />
+        <EventList projectId={selectedProject} timezone={timezone} />
       </section>
     </>
   );

@@ -1,18 +1,19 @@
 import { useEffect, useState } from 'react';
 
 import { useInfiniteEventList } from '../api/useInfiniteEventList';
-import useProject from '../api/useProject';
+
+import { useFilterState } from './filterStore';
 
 const PageSize = 15;
 
 function useEventListViewModel(projectId: string) {
+  const { period } = useFilterState();
   const {
     data: eventData,
     hasNextPage,
     isFetching,
     fetchNextPage,
-  } = useInfiniteEventList(projectId, PageSize);
-  const { data: projectData } = useProject(projectId);
+  } = useInfiniteEventList(projectId, period, PageSize);
   const [currentPage, setCurrentPage] = useState(0);
 
   const { events, totalSize } = eventData?.pages[currentPage] ?? {
@@ -34,7 +35,6 @@ function useEventListViewModel(projectId: string) {
   return {
     events,
     totalSize,
-    timezone: projectData?.project?.timeZone?.id,
     isFetching,
     currentPage,
     onChangePage,
