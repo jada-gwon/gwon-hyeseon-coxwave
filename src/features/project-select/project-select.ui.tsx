@@ -1,6 +1,4 @@
-import { useQuery } from '@connectrpc/connect-query';
-
-import { projectApis } from '@/entities/project';
+import { projectQueries } from '@/entities/project';
 import { Select } from '@/shared/ui/select';
 
 type ProjectSelectProps = {
@@ -12,7 +10,7 @@ const ProjectSelect: React.FC<ProjectSelectProps> = ({
   selectedProject,
   onChangeProject,
 }) => {
-  const { data } = useQuery(projectApis.listProjects);
+  const { data } = projectQueries.useProjectList();
   return (
     <Select
       name="project"

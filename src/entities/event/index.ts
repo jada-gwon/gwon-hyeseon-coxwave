@@ -1,1 +1,1 @@
-export * as eventApis from './event.api';
+export * as eventQueries from './event.query';

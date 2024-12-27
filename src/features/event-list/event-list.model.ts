@@ -1,35 +1,21 @@
-import { useInfiniteQuery } from '@connectrpc/connect-query';
 import { useState } from 'react';
 
-import { eventApis } from '@/entities/event';
+import { eventQueries } from '@/entities/event';
+import { projectQueries } from '@/entities/project';
 
 import { PageSize } from './event-list.lib';
 
 function useEventListViewModel(projectId: string) {
   const [page, setPage] = useState(0);
+
   const {
     data: eventData,
     hasNextPage,
     isFetching,
     fetchNextPage,
-  } = useInfiniteQuery(
-    eventApis.listEvents,
-    {
-      projectId,
-      pageToken: '',
-      pageSize: PageSize,
-    },
-    {
-      pageParamKey: 'pageToken',
-      getNextPageParam: (lastPage, totalPage) => {
-        if (totalPage.length * PageSize >= lastPage.totalSize) {
-          console.log('totalPage', totalPage.length, lastPage.totalSize);
-          return null;
-        }
-        return lastPage.nextPageToken;
-      },
-    },
-  );
+  } = eventQueries.useInfiniteEventList(projectId, PageSize);
+
+  const { data: projectData } = projectQueries.useProject(projectId);
 
   const next = async () => {
     if (isFetching || !hasNextPage) {
@@ -47,7 +33,8 @@ function useEventListViewModel(projectId: string) {
   };
 
   return {
-    data: eventData?.pages[page],
+    events: eventData?.pages[page],
+    timezone: projectData?.project?.timeZone?.id,
     currentPage: page,
     hasPrevPage: page > 0,
     hasNextPage,

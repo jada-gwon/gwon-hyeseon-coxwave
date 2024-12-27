@@ -8,12 +8,12 @@ type EventTableRowsProps = {
 };
 
 const EventTable: React.FC<EventTableRowsProps> = ({ projectId }) => {
-  const { data, currentPage, hasPrevPage, hasNextPage, prev, next } =
+  const { events, currentPage, hasPrevPage, hasNextPage, prev, next } =
     useEventListViewModel(projectId);
 
   return (
     <>
-      <div>{data?.totalSize} Events</div>
+      <div>{events?.totalSize} Events</div>
       <table>
         <thead>
           <tr>
@@ -23,7 +23,7 @@ const EventTable: React.FC<EventTableRowsProps> = ({ projectId }) => {
           </tr>
         </thead>
         <tbody>
-          {data?.events.map((event) => (
+          {events?.events.map((event) => (
             <tr key={event.id}>
               <td>{event.id}</td>
               <td>{event.type}</td>
@@ -33,7 +33,7 @@ const EventTable: React.FC<EventTableRowsProps> = ({ projectId }) => {
         </tbody>
       </table>
       <div>
-        {getPageLabel(currentPage, data?.totalSize ?? 0)}
+        {getPageLabel(currentPage, events?.totalSize ?? 0)}
         <button
           onClick={prev}
           aria-label="이전 페이지 보기"
